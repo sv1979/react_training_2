@@ -13,17 +13,16 @@ export class FunctionBox extends Component {
             'saturday',
             'sunday'
         ],
-        active: 0
+        active: 0,
+        view_size: 7
     }
 
     getData = () => {
-        return this.getCentralView(this.state.mock_data, 7)
+        return this.getCentralView(this.state.mock_data)
     }
 
-    getCentralView = (data, view_size) => {
-        if (!view_size || view_size < 0) {
-            return [];
-        }
+    getCentralView = (data) => {
+        let view_size = this.state.view_size;
 
         if (view_size % 2 === 0) {
             view_size+=1;
