@@ -81,6 +81,14 @@ export class FunctionBox extends Component {
         this.setState({active});
     }
 
+    wheelOnBox = (event) => {
+        if (event.nativeEvent.wheelDelta > 0) {
+            this.goUp()
+          } else {
+            this.goDown()
+          }
+    }
+
     getIndex = (str) => {
         return "button_class_" + this.state.mock_data.indexOf(str)
     }
@@ -88,7 +96,7 @@ export class FunctionBox extends Component {
     render(){
         return (
             <div className="function_box">
-                <ol>
+                <ol onWheel={(e) => this.wheelOnBox(e)}>
                     {this.getData().map((data_item) => (
                         <li key={uuidv4()} data-key={uuidv4()}>
                             <button className={this.getIndex(data_item)} onClick={() => this.selectItem(data_item)}>{data_item}</button>
